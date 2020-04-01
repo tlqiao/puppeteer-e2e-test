@@ -1,0 +1,42 @@
+{
+  "name": "puppeteer-test-demo",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "jest": {
+    "verbose": true,
+    "testURL": "http://localhost/"
+  },
+  "scripts": {
+    "basic": "jest -i /scenario/basic/basic.test.js",
+    "launch-option": "jest -i /scenario/basic/launch-option.test.js",
+    "page-object-demo": "jest -i /scenario/basic/page-object-demo.test.js",
+    "auto-wait": "jest -i /scenario/basic/auto-wait.test.js",
+    "selectElement": "jest -i /scenario/demo/selectElement.test.js",
+    "calculation": "jest -i /scenario/calculation/calculation.test.js",
+    "devExpress": "jest -i /scenario/devExpress/devExpress.test.js",
+    "condiut": "jest -i /scenario/condiut/publishArticle.test.js",
+    "multipleTab": "jest -i /scenario/demo/multipleTab2.test.js",
+    "uploadFile": "jest -i /scenario/demo/uploadFile.test.js",
+    "uploadFile2": "jest -i /scenario/demo/uploadFile2.test.js",
+    "iframeTest": "jest -i /scenario/demo/iframe.test.js",
+    "readCsv": "node scenario/demo/readCsv.test.js",
+    "jsTest": "node jsStudy/arrowFunction.js",
+    "callApi": "node scenario/demo/callApi.test.js"
+  },
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "@types/jest": "^25.1.4",
+    "csv-parser": "^2.3.2",
+    "eslint": "^6.8.0",
+    "expect-puppeteer": "^4.4.0",
+    "jest": "^25.2.4",
+    "jest-puppeteer": "^4.4.0",
+    "neat-csv": "^5.2.0",
+    "puppeteer": "^2.1.1",
+    "puppeteer-firefox": "^0.5.1",
+    "request": "^2.88.2",
+    "request-promise": "^4.2.5"
+  }
+}
