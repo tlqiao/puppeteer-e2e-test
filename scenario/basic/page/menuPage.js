@@ -10,4 +10,4 @@ async function gotoSign() {
 module.exports ={
     openApp : openApp,
     gotoSign : gotoSign
-}
+};
