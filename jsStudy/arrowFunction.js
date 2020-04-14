@@ -12,10 +12,10 @@ var addTwo = (a,b) => {return a+b};
 
 const addThree = async (a,b) => {
     return a+b;
-}
+};
 
 console.log(obj.getAge());
 console.log(add(1,2));
-console.log(double(3))
-console.log(addTwo(1,3))
-console.log(addThree(1,4))
+console.log(double(3));
+console.log(addTwo(1,3));
+console.log(addThree(1,4));

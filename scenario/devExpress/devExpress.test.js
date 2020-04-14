@@ -3,7 +3,6 @@ const dragElement = require('./dragElement');
 describe("devExpress web page test", async () => {
     it("assert practice", async ()=> {
         page.on('dialog',  async dialog => {
-            console.log(dialog.message());
             await dialog.dismiss();
     });
         await page.goto('https://devexpress.github.io/testcafe/example/');

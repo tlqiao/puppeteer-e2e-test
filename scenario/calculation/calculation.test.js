@@ -23,7 +23,7 @@ describe('Google', () => {
     });
 
     it('should add numbers correctly with auto wait', async () => {
-         await expect(page).toFill('input[ng-model="first"]','5');
+        await expect(page).toFill('input[ng-model="first"]','5');
         await expect(page).toSelect('select[ng-model="operator"]','SUBTRACTION');
         await expect(page).toFill('input[ng-model="second"]',  '3');
         await expect(page).toClick('#gobutton');

@@ -1,7 +1,7 @@
-var rp= require('request-promise');
-var rq=require('request');
+const rp= require('request-promise');
+const rq=require('request');
 function callPostApi() {
-    var options = {
+    const options = {
         method: "POST",
         uri: "http://localhost:9090/api/addBookWithAnyBody/abc",
         headers: {
@@ -12,11 +12,9 @@ function callPostApi() {
     };
     rp(options).then (function (parseBody) {
         console.log(parseBody)
-    })
-        .catch(function(error){console.log("call api error" + error)})
+    }).catch(function(error){console.log("call api error" + error)})
 
 }
-
 function callPostApi2() {
     const option= {
         method: "POST",
@@ -27,16 +25,14 @@ function callPostApi2() {
         json: true
     };
     const uri="http://localhost:9090/api/addBookWithAnyBody/abc";
-
-    rq(uri,option,function callBack(error,response,body) {
+    rq(uri,option,function(error,response,body) {
         console.log(response);
         console.log(body);
         console.log(response.headers);
     })
 }
-
 function callGetApi() {
-    var options= {
+    const options= {
         method:"GET",
         uri:"http://localhost:9090/api/getBookResponse/abc",
         headers: {
@@ -44,14 +40,14 @@ function callGetApi() {
         },
         json: true
     };
-    rp(options).then(function (parseBody){
-        console.log(parseBody)
+    rp(options).then(function(parseBody){
+        console.log(parseBody);
         console.log(parseBody.books[0].name)
 
     }).catch(function(error) {
 
     })
 }
-// callPostApi();
-// callGetApi();
+callPostApi();
+callGetApi();
 callPostApi2();
