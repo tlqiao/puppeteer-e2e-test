@@ -11,6 +11,6 @@ describe("keyboard action demo", () => {
         await page.focus('#comments');
         await page.keyboard.sendCharacter('DDD');
         await page.keyboard.press('Enter');
-        await waitUntil.sleep(3000);
+        await page.waitFor(3000);
     });
 });

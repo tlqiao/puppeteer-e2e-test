@@ -11,15 +11,6 @@ describe("querySelector demo ", () => {
             document.querySelector('app-article-meta a[href="/profile/e2etest"]').parentElement.querySelector('button').click();
         });
     });
-    it("get value with document querySelector", async () => {
-        await page.goto('https://angular.realworld.io/');
-        await page.waitForSelector('app-layout-header li a[href="/login"]');
-        const value = await page.evaluate(() => {
-            return document.querySelector('app-layout-header li a[href="/login"]').innerText
-        });
-        await expect(value).toEqual('Sign in');
-        await expect(value).toContain('Sign')
-    });
 
     it("filter element with document querySelector", async () => {
         await page.goto('https://angular.realworld.io/');

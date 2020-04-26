@@ -4,6 +4,10 @@ describe("get element info to validate ", () => {
         await expect(page).not.toMatchElement('#submit123');
         await expect(page).toMatchElement('#submit-button');
         await expect(page).toMatchElement('#submit-button', {text:'Submit'});
+
+        const radioCount = await page.$$eval('label input[type="radio"]',el=>{return el.length});
+        expect(radioCount).toEqual(3);
+
         expect(await page.$eval('#submit-button', el => {return el.getAttribute('disabled')})).toEqual('disabled');
         await expect(page).toFill('#developer-name','abc');
         expect(await page.$eval('#submit-button', el => {return el.getAttribute('disabled')})).toBeFalsy();
@@ -29,6 +33,33 @@ describe("get element info to validate ", () => {
         await page.goto('https://devexpress.github.io/testcafe/example/');
         const elementHandle =await page.$('#tried-section label');
         await expect(elementHandle).toMatch('I have tried TestCafe');
+    });
+
+    it('validation with containText',async()=> {
+        await page.goto('https://devexpress.github.io/testcafe/example/');
+        const elementHandle =await page.$('#tried-section label');
+        await expect(elementHandle).toMatch('I have tried TestCafe');
+        await expect(elementHandle).toMatch(/.*TestCafe.*/)
     })
 
+    it("get value with document querySelector", async () => {
+        await page.goto('https://angular.realworld.io/');
+        await page.waitForSelector('app-layout-header li a[href="/login"]');
+        const value = await page.evaluate(() => {
+            return document.querySelector('app-layout-header li a[href="/login"]').innerText
+        });
+        await expect(value).toEqual('Sign in');
+        await expect(value).toContain('Sign');
+
+        const length=await page.evaluate(()=> {
+            return document.querySelectorAll('app-layout-header li a[href="/login"]').length
+        });
+        await expect(length).toEqual(1);
+    });
+
+    it("get element list value", async()=> {
+        await  page.goto('https://news.ycombinator.com/news');
+        const stories = await page.$$eval('a.storylink', anchors => { return anchors.map(anchor => anchor.textContent).slice(0, 10) });
+        console.log(stories)
+    });
 });

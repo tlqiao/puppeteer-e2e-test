@@ -1,10 +1,24 @@
 describe("select and control element", () => {
-    it("get list demo", async()=> {
-        await  page.goto('https://news.ycombinator.com/news');
-        const stories = await page.$$eval('a.storylink', anchors => { return anchors.map(anchor => anchor.textContent).slice(0, 10) });
-        console.log(stories)
+    it('should type text successfully', async() => {
+        await page.goto('http://juliemr.github.io/protractor-demo/');
+        const elementHandler = await page.$('input[ng-model="first"]');
+        await elementHandler.type('5');
+        await page.type('input[ng-model="second"]',  '3');
     });
-    it("control element and validate value", async()=> {
+
+    it('should add numbers correctly way', async () => {
+        await page.goto('http://juliemr.github.io/protractor-demo/');
+        await page.type('input[ng-model="first"]', '5');
+        await page.select('select[ng-model="operator"]','SUBTRACTION');
+        await page.type('input[ng-model="second"]',  '3');
+        await page.click('#gobutton');
+        await page.waitForSelector('h2',{timeout: 3000});
+        expect(await page.$eval('h2', el => el.innerText)).toContain('2');
+        let value = await page.$eval('tbody tr:nth-child(1) td:nth-child(3)',el=> {return el.innerText});
+        expect(value).toContain('2');
+    });
+
+    it("should add numbers correctly with auto-wait", async()=> {
         await page.goto('http://juliemr.github.io/protractor-demo/');
         await expect(page).toFill('input[ng-model="first"]','5');
         await expect(page).toSelect('select[ng-model="operator"]','SUBTRACTION');
@@ -25,7 +39,7 @@ describe("select and control element", () => {
 
         //find parent element
         const elementHandle = await page.$('.container.ng-scope');
+        //find element base on parent element
         await expect(elementHandle).toFill('input[ng-model="first"]','55');
     });
-
 });

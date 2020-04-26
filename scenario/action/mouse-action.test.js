@@ -1,13 +1,18 @@
 describe("mouse action demo", () => {
     it("mouse action ", async () => {
         await page.goto('https://devexpress.github.io/testcafe/example/');
-        const x = await page.evaluate(() => document.querySelector('#developer-name').x);
-        const y = await page.evaluate(() => document.querySelector('#developer-name').y);
-        await console.log("this is log" + x);
-        await page.mouse.click(x, y, {'button': 'right'});
-        const example = await page.$('#example');
-        await example.click({
-            button: 'right',
-        });
+        const elementHandle = await page.$('#developer-name');
+        const rect = await page.evaluate((elementHandle) => {
+            const {top, left, bottom, right} = elementHandle.getBoundingClientRect();
+            return {top, left, bottom, right};
+        }, elementHandle);
+        console.log('the position is' + rect.top,rect.left,rect.bottom,rect.right);
+
+        await page.mouse.click(rect.left, rect.top, {'button': 'right'});
+
+        await page.mouse.click(rect.left, rect.top, {'button': 'left'});
+
+        const elementHandle2 = await page.$('#windows');
+        await elementHandle2.click({button: 'left',});
     });
 });

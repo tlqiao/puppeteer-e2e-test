@@ -11,7 +11,7 @@ describe("upload  file demo", () => {
 
     it("should upload file with puppeteer-expect", async () => {
         page.goto("https://chercher.tech/practice/popups");
-        await waitUntil.sleep(5000);
+        await page.waitFor(3000);
         await expect(page).toUploadFile(
             'input[type="file"]',
             path.join('./testdata/', 'test.txt'),
