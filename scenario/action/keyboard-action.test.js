@@ -1,4 +1,3 @@
-const waitUntil = require('../common/waitUntil');
 describe("keyboard action demo", () => {
     it("keyboard action practice", async () => {
         await page.goto('https://devexpress.github.io/testcafe/example/');

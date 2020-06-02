@@ -1,4 +1,4 @@
-const configManage=require('../../config/configManage');
+const configManage=require('../../../config/configManage');
 const csvToJson = require('csvtojson');
 async function login(username, password) {
     await page.goto(configManage.getConfigs().appBaseUrl);

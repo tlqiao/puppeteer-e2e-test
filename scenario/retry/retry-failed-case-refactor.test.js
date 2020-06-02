@@ -19,6 +19,6 @@ describe("retry case demo", () => {
         await expect(page).toFill('app-auth-page form input[formcontrolname="email"]',"e2etest@163.com");
         await expect(page).toFill('app-auth-page form input[formcontrolname="password"]',"12345678");
         await expect(page).toClick('app-auth-page button[type="submit"]');
-        await console.log("second success case just do login")
+        await console.log("second success case just login")
     })
 });

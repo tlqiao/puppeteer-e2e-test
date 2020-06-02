@@ -1,7 +1,7 @@
-const blogManage= require('../testdata/dataManage/blog-manage');
-const loginPage = require('./page/loginPage');
-const globalFeedPage=require('./page/globalFeedPage');
-const blogEditPage=require('./page/blogEditPage');
+const blogManage= require('../../../testdata/dataManage/blog-manage');
+const loginPage = require('../../page/commonPage/loginPage');
+const globalFeedPage=require('../../page/blogPage/globalFeedPage');
+const blogEditPage=require('../../page/blogPage/blogEditPage');
 describe("add comment test scenario", ()=> {
     it("should favorite and add comment for blog successfully", async() => {
         await blogManage.addBlogToPrepareTestData();

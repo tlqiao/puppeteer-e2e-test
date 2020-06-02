@@ -16,5 +16,6 @@ describe("retry case demo", () => {
         await page.select('select[ng-model="operator"]','SUBTRACTION');
         await page.type('input[ng-model="second"]',  '3');
         await page.click('#gobutton');
+        await console.log("run success case")
     })
 });

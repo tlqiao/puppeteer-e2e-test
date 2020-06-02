@@ -12,6 +12,11 @@ connection.connect(function (err) {
     }
     console.log('connected as id ' + connection.threadId);
 });
+
+async function closeConnection() {
+    connection.end();
+}
 module.exports = {
-    connection: connection
+    connection: connection,
+    closeConnection:closeConnection
 };

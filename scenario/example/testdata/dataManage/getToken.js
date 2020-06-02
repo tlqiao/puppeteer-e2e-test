@@ -1,5 +1,4 @@
 const configManage=require('../../config/configManage');
-const csvToJson=require('csvtojson');
 const rp= require('request-promise');
 async function getToken(username,password) {
     const option= {
