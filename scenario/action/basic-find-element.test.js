@@ -6,7 +6,7 @@ describe("select and control element", () => {
         await page.type('input[ng-model="second"]',  '3');
     });
 
-    it('should add numbers correctly way', async () => {
+    it.skip('should add numbers correctly way', async () => {
         await page.goto('http://juliemr.github.io/protractor-demo/');
         await page.type('input[ng-model="first"]', '5');
         await page.select('select[ng-model="operator"]','SUBTRACTION');

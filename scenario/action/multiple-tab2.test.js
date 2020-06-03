@@ -1,4 +1,3 @@
-const waitUntil = require('../common/waitUntil');
 describe("multiple tab2 demo",  () => {
     it("change to another tab with listener way", async () => {
         browser.on('targetcreated', async (target) => {
@@ -8,7 +7,7 @@ describe("multiple tab2 demo",  () => {
         });
         await page.goto("https://freshdesignweb.com/jquery-html5-file-upload/");
         await expect(page).toClick('a[href="https://codepen.io/bi11johnston/pen/bsGDf"]');
-        await waitUntil.sleep(10000);
+        await page.waitFor(10000);
         await page.waitForSelector('a[href="/login"]');
         await page.click('a[href="/login"]');
         await expect(page).toFill('#login-email-field', 'testUser');
