@@ -45,7 +45,8 @@
     "retry-failed-case": "jest -i /scenario/retry/retry-failed-case.test.js",
     "retry-failed-case-refactor": "jest -i /scenario/retry/retry-failed-case-refactor.test.js",
     "retry-step": "jest -i /scenario/retry/retry-step.test.js ",
-    "testSuite": "jest -i '/scenario/basic/*' "
+    "testSuite": "jest -i '/scenario/basic/*' ",
+    "getHarForBmcScenario1": "jest -i  performance/scenario/bmc/search_by_keyword_1.test.js"
   },
   "author": "",
   "license": "ISC",
@@ -64,7 +65,9 @@
     "puppeteer-extra": "^3.1.9",
     "puppeteer-extra-plugin-repl": "^2.2.4",
     "puppeteer-firefox": "^0.5.1",
+    "puppeteer-har": "^1.1.2",
     "request": "^2.88.2",
-    "request-promise": "^4.2.5"
+    "request-promise": "^4.2.5",
+    "shelljs": "^0.8.4"
   }
 }
