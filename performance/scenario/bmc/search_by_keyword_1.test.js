@@ -23,6 +23,7 @@ describe("use puppeteer to get har file ", () => {
         await page.waitFor(5000)
         await har.stop();
         await har.start({path: path.join(path.resolve(), configs.bmcReportPath.scenario1+'2.har')});
+       // can not find the element,weird
         await expect(page).toClick('header button');
         await expect(page).toFill('input[id="publisherSearch"]','carbon neutral');
         await page.keyboard.press('Enter');
