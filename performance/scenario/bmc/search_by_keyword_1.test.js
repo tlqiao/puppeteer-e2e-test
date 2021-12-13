@@ -20,7 +20,7 @@ describe("use puppeteer to get har file ", () => {
         await page.setDefaultTimeout(configs.timeout)
         await har.start({path: path.join(path.resolve(), configs.bmcReportPath.scenario1+'1.har')});
         await page.goto("https://www.biomedcentral.com/");
-        // await page.waitFor(5000)
+        await page.waitFor(5000)
         await har.stop();
         await har.start({path: path.join(path.resolve(), configs.bmcReportPath.scenario1+'2.har')});
         //获取innertext为Search的Dom元素并点击
@@ -31,7 +31,7 @@ describe("use puppeteer to get har file ", () => {
         });
         await page.$eval('#publisherSearch', el => el.value = 'carbon neutral');
         await page.keyboard.press('Enter');
-        // await page.waitFor(5000)
+        await page.waitFor(5000)
         await har.stop();
         await page.close();
         await browser.close();
