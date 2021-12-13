@@ -23,9 +23,19 @@ describe("use puppeteer to get har file ", () => {
         await page.waitFor(5000)
         await har.stop();
         await har.start({path: path.join(path.resolve(), configs.bmcReportPath.scenario1+'2.har')});
+<<<<<<< HEAD
        // can not find the element,weird
         await expect(page).toClick('header button');
         await expect(page).toFill('input[id="publisherSearch"]','carbon neutral');
+=======
+        //获取innertext为Search的Dom元素并点击
+        await page.evaluate(() => {
+            const elements = [...document.querySelectorAll('span')];
+            const targetElement = elements.find(e => e.innerText == 'Search');
+            if (targetElement) targetElement.click();
+        });
+        await page.$eval('#publisherSearch', el => el.value = 'carbon neutral');
+>>>>>>> 1ee76e8ad80fb7be1aeb3d106fc24f03976e6e5b
         await page.keyboard.press('Enter');
         await page.waitFor(5000)
         await har.stop();
