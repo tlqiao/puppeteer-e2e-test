@@ -47,9 +47,9 @@
     "retry-step": "jest -i /scenario/retry/retry-step.test.js ",
     "testSuite": "jest -i '/scenario/basic/*' ",
     "getHarForBmcScenario1": "jest -i  performance/scenario/bmc/search_by_keyword_1.test.js",
-    "getHarForBmcScenairo2": "jest -i  performance/scenario/bmc/explore_journal_by_object_2.test.js",
-    "getHarForBmcScenairo3": "jest -i  performance/scenario/bmc/explore_journal_by_letter_3.test.js",
-    "getHarForBmcScenairo4": "jest -i  performance/scenario/bmc/download_article_4.test.js"
+    "getHarForBmcScenario2": "jest -i  performance/scenario/bmc/explore_journal_by_object_2.test.js",
+    "getHarForBmcScenario3": "jest -i  performance/scenario/bmc/explore_journal_by_letter_3.test.js",
+    "getHarForBmcScenario4": "jest -i  performance/scenario/bmc/download_article_4.test.js"
   },
   "author": "",
   "license": "ISC",
