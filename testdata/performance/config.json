@@ -54,7 +54,7 @@
 
     },
     "resultFolderPath": "\\result\\performance",
-    "chromePath": "\\?"
+    "chromePath": "C:\\Program Files\\Google\\Chrome\\Application\\chrome.exe"
   },
   "macOrLinux": {
     "bmcPageUrl": {
