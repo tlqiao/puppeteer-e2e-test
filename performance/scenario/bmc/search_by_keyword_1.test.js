@@ -9,9 +9,9 @@ let har;
 describe("use puppeteer to get har file ", () => {
     it("use more launch properties demo", async () => {
         if (generate.getConfigs().isWindows) {
-            configs=generate.getConfigs().windows;}
-        else {
-            configs=generate.getConfigs().macOrLinux;
+            configs = generate.getConfigs().windows;
+        } else {
+            configs = generate.getConfigs().macOrLinux;
         }
         browser = await puppeteer.launch({slowMo: '1000', headless: false, executablePath: configs.chromePath});
         page = await browser.newPage();
@@ -23,12 +23,13 @@ describe("use puppeteer to get har file ", () => {
         * */
         await har.start({path: path.join(path.resolve(), configs.bmcReportPath.scenario1+'1.har')});
         await page.goto("https://www.biomedcentral.com/");
-        await page.waitFor(5000)
+        // await page.waitFor(5000)
         await har.stop();
         /*
         * har2
         * */
         await har.start({path: path.join(path.resolve(), configs.bmcReportPath.scenario1+'2.har')});
+
         //get DOM element whose innertext is Search and clcik
         await page.evaluate(() => {
             const elements = [...document.querySelectorAll('span')];
@@ -37,7 +38,7 @@ describe("use puppeteer to get har file ", () => {
         });
         await page.$eval('#publisherSearch', el => el.value = 'carbon neutral');
         await page.keyboard.press('Enter');
-        await page.waitFor(5000)
+        // await page.waitFor(5000)
         await har.stop();
         /*
         *

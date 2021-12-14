@@ -17,7 +17,7 @@ describe("use puppeteer to get har file ", () => {
         browser = await puppeteer.launch({slowMo: '1000', headless: false, executablePath: configs.chromePath});
         page = await browser.newPage();
         har = new PuppeteerHar(page);
-        await page.setViewport({width: 1920, height: 1080});
+        // await page.setViewport({width: 1920, height: 1080});
         await page.setDefaultTimeout(configs.timeout)
         /*
     * har1
