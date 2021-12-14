@@ -1,5 +1,5 @@
 {
-  "isWindows": true,
+  "isWindows": false,
   "timeout": 5000,
   "windows": {
     "bmcPageUrl": {
