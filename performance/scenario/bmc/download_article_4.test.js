@@ -19,25 +19,26 @@ describe("use puppeteer to get har file ", () => {
         har = new PuppeteerHar(page);
         await page.setViewport({width: 1920, height: 1080});
         await page.setDefaultTimeout(configs.timeout)
+        /*
+    * har1
+     * */
         await har.start({path: path.join(path.resolve(), configs.bmcReportPath.scenario4 + '1.har')});
         //Visit URL
         await page.goto("https://www.biomedcentral.com/search?query=&searchType=publisherSearch");
         await page.waitFor(5000)
         await har.stop();
+        /*
+    *
+     * */
         await har.start({path: path.join(path.resolve(), configs.bmcReportPath.scenario4 + '2.har')});
-        //find first Full Text
-        // await page.evaluate(() => {
-        //     // const elements = [...document.querySelectorAll('span')];
-        //     const elements=[...document.querySelectorAll('span')];
-        //     const targetElement = elements.find(e => e.innerText == 'Full Text');
-        //
-        //     if (targetElement) targetElement[0].click();
-        // });
-       const tar= await page.$eval('#main-content > div > main > div > ol > li:nth-child(1) > article > ul > li:nth-child(1) > a > span',e => e.innerText=='Full Text');
-       if(tar) tar.click();
+        const Full_Text_btn=await page.$('a[href="//pathogeneticsjournal.biomedcentral.com/articles/10.1186/1755-8417-1-1"]')
+        await Full_Text_btn.click()
         await page.waitFor(5000)
         await har.stop();
-        //Click Cancer & Metabolism
+        /*
+*
+* */
+
         await har.start({path: path.join(path.resolve(), configs.bmcReportPath.scenario4 + '3.har')});
         await page.evaluate(() => {
             const elements = [...document.querySelectorAll('span')];

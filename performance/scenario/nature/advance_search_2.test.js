@@ -1,3 +1,11 @@
+//
+//
+//
+//wait for debugged
+//
+//
+//
+
 const puppeteer = require('puppeteer');
 const PuppeteerHar = require('puppeteer-har');
 const generate = require('../../generateReport')
@@ -7,7 +15,7 @@ let browser;
 let page;
 let har;
 describe("use puppeteer to get har file ", () => {
-    it("search_by_inputting_keyword_info_1.test", async () => {
+    it("advance_search_2.test", async () => {
         if (generate.getConfigs().isWindows) {
             configs=generate.getConfigs().windows;}
         else {
@@ -18,34 +26,36 @@ describe("use puppeteer to get har file ", () => {
         har = new PuppeteerHar(page);
         await page.setViewport({width: 1920, height: 1080});
         await page.setDefaultTimeout(configs.timeout)
-        /*
-    * har1
-    * */
-        await har.start({path: path.join(path.resolve(), configs.natureReportPath.scenario1+'1.har')});
+        await har.start({path: path.join(path.resolve(), configs.natureReportPath.scenario2+'1.har')});
         //Visit URL
         await page.goto("https://www.nature.com/");
-        await page.waitFor(5000)
-        await har.stop();
-        /*
-    * har2
-    * */
-        await har.start({path: path.join(path.resolve(), configs.natureReportPath.scenario1+'2.har')});
         await page.evaluate(() => {
             const elements = [...document.querySelectorAll('span')];
             const targetElement = elements.find(e => e.innerText == 'Search');
             if (targetElement) targetElement.click();
         });
-        await page.$eval('#keywords', el => el.value = 'chaos experiment');
+        await page.evaluate(() => {
+            const elements = [...document.querySelectorAll('a')];
+            const targetElement = elements.find(e => e.innerText == 'Advanced search');
+            if (targetElement) targetElement.click();
+        });
+        await page.waitFor(5000)
+        await har.stop();
+        await har.start({path: path.join(path.resolve(), configs.natureReportPath.scenario2+'2.har')});
+
+
+        await page.$eval('#advanced-search-keywords', el => el.value = 'carbon neutral');
+        await page.$eval('#journal-autocomplete', el => el.value = 'nature');
+        // await page.keyboard.press('Enter');
+        // Search
         await page.evaluate(() => {
             const elements = [...document.querySelectorAll('button')];
             const targetElement = elements.find(e => e.innerText == 'Search');
             if (targetElement) targetElement.click();
         });
-        await page.waitFor(10000)
+
+        await page.waitFor(60000)
         await har.stop();
-        /*
-    *
-    * */
         await page.close();
         await browser.close();
     });

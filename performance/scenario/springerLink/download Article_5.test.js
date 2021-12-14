@@ -46,7 +46,7 @@ describe("use puppeteer to get har file ", () => {
             const targetElement = elements.find(e => e.innerText == 'Download PDF');
             if (targetElement) targetElement.click();
         });
-        await page.waitFor(180000)
+        await page.waitFor(50000)
         await har.stop();
         //---->
         await page.close();

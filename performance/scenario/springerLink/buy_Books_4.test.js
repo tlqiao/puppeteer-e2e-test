@@ -88,19 +88,8 @@ describe("use puppeteer to get har file ", () => {
             const targetElement = elements.find(e => e.innerText == 'Buy now');
             if (targetElement) targetElement.click();
         });
-        await page.waitFor(10000)
+        await page.waitFor(30000)
         await har.stop();
-        //---->log out status
-        // await page.goto("https://link.springer.com/chapter/10.1007/978-3-030-82420-4_4");
-        // const lgb = await page.$("#button-Dropdown-MenuAdmin-dropdown");
-        // await lgb.click()
-        // await page.evaluate(() => {
-        //     const elements = [...document.querySelectorAll('span')];
-        //     const targetElement = elements.find(e => e.innerText == 'Log out');
-        //     // '<br>No additional fees apply.');
-        //     if (targetElement) targetElement.click();
-        // });
-
         await page.close();
         await browser.close();
     });
