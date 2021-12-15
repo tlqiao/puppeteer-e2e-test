@@ -1,11 +1,3 @@
-//
-//
-//
-//wait for debugged
-//
-//
-//
-
 const puppeteer = require('puppeteer');
 const PuppeteerHar = require('puppeteer-har');
 const generate = require('../../generateReport')
@@ -14,6 +6,7 @@ let configs;
 let browser;
 let page;
 let har;
+
 describe("use puppeteer to get har file ", () => {
     it("advance_search_2.test", async () => {
         if (generate.getConfigs().isWindows) {
@@ -27,7 +20,9 @@ describe("use puppeteer to get har file ", () => {
         await page.setViewport({width: 1920, height: 1080});
         await page.setDefaultTimeout(configs.timeout)
         await har.start({path: path.join(path.resolve(), configs.natureReportPath.scenario2+'1.har')});
-        //Visit URL
+        //
+        //
+
         await page.goto("https://www.nature.com/");
         await page.evaluate(() => {
             const elements = [...document.querySelectorAll('span')];
@@ -42,18 +37,11 @@ describe("use puppeteer to get har file ", () => {
         await page.waitFor(5000)
         await har.stop();
         await har.start({path: path.join(path.resolve(), configs.natureReportPath.scenario2+'2.har')});
-
-
         await page.$eval('#advanced-search-keywords', el => el.value = 'carbon neutral');
         await page.$eval('#journal-autocomplete', el => el.value = 'nature');
-        // await page.keyboard.press('Enter');
-        // Search
-        await page.evaluate(() => {
-            const elements = [...document.querySelectorAll('button')];
-            const targetElement = elements.find(e => e.innerText == 'Search');
-            if (targetElement) targetElement.click();
-        });
-
+        await page.keyboard.press('Enter');
+        await page.keyboard.press('Enter');
+        await page.keyboard.press('Enter');
         await page.waitFor(60000)
         await har.stop();
         await page.close();
