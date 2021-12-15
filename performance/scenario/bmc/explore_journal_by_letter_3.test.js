@@ -13,10 +13,9 @@ describe("use puppeteer to get har file ", () => {
         } else {
             configs = generate.getConfigs().macOrLinux;
         }
-        browser = await puppeteer.launch({slowMo: '1000', headless: false, executablePath: configs.chromePath});
+        browser = await puppeteer.launch({slowMo: '1000', headless: false, executablePath: configs.chromePath,args: [`--window-size=1920,1080`]});
         page = await browser.newPage();
         har = new PuppeteerHar(page);
-        await page.setViewport({width: 1920, height: 1080});
         await page.setDefaultTimeout(configs.timeout)
         await har.start({path: path.join(path.resolve(), configs.bmcReportPath.scenario3 + '1.har')});
         //Visit URL
