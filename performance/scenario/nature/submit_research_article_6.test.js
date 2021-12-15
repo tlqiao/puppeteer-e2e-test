@@ -27,7 +27,7 @@ let browser;
 let page;
 let har;
 describe("use puppeteer to get har file ", () => {
-    it("search_by_journal_3.test", async () => {
+    it("submit_research_article_6.test", async () => {
         if (generate.getConfigs().isWindows) {
             configs=generate.getConfigs().windows;}
         else {
@@ -46,24 +46,32 @@ describe("use puppeteer to get har file ", () => {
         await page.goto("https://author-welcome.nature.com/41598/");
         await page.waitFor(5000)
         await har.stop();
-        /*
-    * har2
-    * */
-        await har.start({path: path.join(path.resolve(), configs.natureReportPath.scenario6+'2.har')});
+
 
         const search_btn = await page.$('label[for=\"regular_submission\"]');
         await search_btn.click();
         await page.click('#update-old-subjects')
         await page.waitFor(10000)
         await page.$eval('#login-email', el => el.value = 'yiran.zhang@thoughtworks.com');
-        await page.click('#email-submit')
-        await page.waitFor(10000)
-        await page.$eval('#login-password',el =>el.value='zyrqwer1234567890')
-
-        await page.click('#password-submit')
-
-
+        const email_btn= await page.$('button[class="u-button u-button--primary u-button--small"]');
+        await email_btn.click()
+        // await email_btn.waitForNavigation();
+        await page.waitFor(5000);
+        await page.$eval('#login-password',el =>el.value='zyrqwer1234567890');
+        const pwd_btn =await page.$('button[class="u-button u-button--primary u-button--small"]');
+        await har.start({path: path.join(path.resolve(), configs.natureReportPath.scenario6+'2.har')});
+        await pwd_btn.click();
+        await page.waitFor(5000);
         await har.stop();
+
+
+        await har.start({path: path.join(path.resolve(), configs.natureReportPath.scenario6+'3.har')});
+        const start_submission=await page.$('input[value="Start submission"]');
+        await start_submission.click()
+        await page.waitFor(3000);
+        await har.stop();
+
+
         /*
     *
     * */
