@@ -39,10 +39,9 @@ describe("use puppeteer to get har file ", () => {
         await har.start({path: path.join(path.resolve(), configs.natureReportPath.scenario2+'2.har')});
         await page.$eval('#advanced-search-keywords', el => el.value = 'carbon neutral');
         await page.$eval('#journal-autocomplete', el => el.value = 'nature');
-        await page.keyboard.press('Enter');
-        await page.keyboard.press('Enter');
-        await page.keyboard.press('Enter');
-        await page.waitFor(60000)
+        const continue_btn=await page.$('button[class="c-search__button c-search__button--width-auto"]')
+        await continue_btn.click()
+        await page.waitFor( 10000)
         await har.stop();
         await page.close();
         await browser.close();
